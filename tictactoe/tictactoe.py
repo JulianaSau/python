@@ -39,8 +39,9 @@ def playerInput(board):
             print("Enter a valid number!")
             printBoard(board)
 
-
 # check for the win or tie(diagonally, horizontally or vertically)
+
+
 def checkHorizontal(board):
     global winner
     if board[0] == board[1] == board[2] and board[1] != "-":
@@ -111,7 +112,7 @@ def computer(board):
         if board[position] == "-":
             board[position] = "O"
             switchPlayer()
-    sleep(1)
+    sleep(0.3)
 
 
 # check fo win or tie again
