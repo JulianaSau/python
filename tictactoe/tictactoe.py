@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import random
 from time import sleep
 
@@ -107,7 +109,7 @@ def switchPlayer():
 
 # computer
 def computer(board):
-    while currentPlayer == "O":
+    while currentPlayer == "O" and gameRunning:
         position = random.randint(0, 8)
         if board[position] == "-":
             board[position] = "O"
@@ -130,3 +132,4 @@ while gameRunning:
 # What happens when both people win?
 # When a winner is announced check tie shouldnt run
 # choose whether you want to play with computer or not
+# make the computer actually try to win
