@@ -1,4 +1,5 @@
 import random
+from time import sleep
 
 board = ["-", "-", "-",
          "-", "-", "-",
@@ -22,14 +23,21 @@ def printBoard(board):
 
 
 def playerInput(board):
-    inp = int(input("Enter a number 1-9: "))
-
-    # TODO -error management incase
-    # input is empty line or not a number
-    if inp >= 1 and inp <= 9 and board[inp-1] == "-":
-        board[inp-1] = currentPlayer
-    else:
-        print("Oops player is already in that spot")
+    while True:
+        try:
+            inp = int(input("Enter a number 1-9: "))
+            if 1 <= inp <= 9 and board[inp - 1] == "-":
+                board[inp-1] = currentPlayer
+                break
+            elif inp not in range(1, 11):
+                print("Enter a valid number!")
+                printBoard(board)
+            else:
+                print("Try again, spot occupied!")
+                printBoard(board)
+        except ValueError:
+            print("Enter a valid number!")
+            printBoard(board)
 
 
 # check for the win or tie(diagonally, horizontally or vertically)
@@ -76,12 +84,14 @@ def checkTie(board):
     if "-" not in board:
         printBoard(board)
         print("It is a tie")
-        gameRunning = False
+        exit(0)
 
 
 def checkWin():
+    global gameRunning
     if checkDiagonal(board) or checkHorizontal(board) or checkVertical(board):
         print(f"The winner is {winner}")
+        gameRunning = False
 
 # switch the player
 
@@ -101,6 +111,7 @@ def computer(board):
         if board[position] == "-":
             board[position] = "O"
             switchPlayer()
+    sleep(1)
 
 
 # check fo win or tie again
