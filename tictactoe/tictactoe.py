@@ -10,7 +10,6 @@ gameRunning = True
 
 # printing the game board
 
-
 def printBoard(board):
     print(board[0] + " | " + board[1] + " | " + board[2])
     print("----------")
@@ -19,7 +18,6 @@ def printBoard(board):
     print(board[6] + " | " + board[7] + " | " + board[8])
 
 # take the player input
-
 
 def playerInput(board):
     inp = int(input("Enter a number 1-9: "))
@@ -30,6 +28,11 @@ def playerInput(board):
         board[inp-1] = currentPlayer
     else:
         print("Oops player is already in that spot")
+        # very temporary fix for If you choose a number that was 
+        # already picked, the Computer automatically just picks another 
+        # spot so hes in the lead.
+        # so switch player so that it comes back to you
+        switchPlayer()
 
 
 # check for the win or tie(diagonally, horizontally or vertically)
@@ -84,8 +87,6 @@ def checkWin():
         print(f"The winner is {winner}")
 
 # switch the player
-
-
 def switchPlayer():
     global currentPlayer
     if currentPlayer == "X":
