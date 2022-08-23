@@ -40,8 +40,18 @@ def insertLetter(letter, position):
         return
     else:
         print("Invalid position!")
-        position = int(input("Please enter a new position: "))
-        insertLetter(letter, position)
+        while True:
+            try:
+                position = int(input("Please enter a new position: "))
+                if 1 <= position <= 9:
+                    insertLetter(letter, position)
+                    break
+                elif position not in range(1, 11) or position == '':
+                    print("Enter a valid number!")
+                else:
+                    print("Enter a number bewteen 1 and 9")
+            except ValueError:
+                print("Enter a number!")
         return
 
 
@@ -97,12 +107,22 @@ def checkDraw():
     for key in board.keys():
         if board[key] == ' ':
             return False
-    return False
+    return True
 
 
 def playerMove():
-    position = int(input("Enter a position for 'O': "))
-    insertLetter(player, position)
+    while True:
+        try:
+            position = int(input("Enter position for 'O': "))
+            if 1 <= position <= 9:
+                insertLetter(player, position)
+                break
+            elif position not in range(1, 11) or position == '':
+                print("Enter a valid number!")
+            else:
+                print("Enter a number bewteen 1 and 9")
+        except ValueError:
+            print("Enter a number!")
     return
 
 
@@ -113,6 +133,7 @@ def computerMove():
         if board[key] == ' ':
             board[key] = computer
             score = minimax(board, False)
+            board[key] = ' '
             if score > bestScore:
                 bestScore = score
                 bestMove = key
