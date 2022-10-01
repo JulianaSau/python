@@ -1,10 +1,11 @@
 #!/usr/bin/python3
+# A python program that simulates rolling of a dice 1000 times and accounts for the frequency of ecah face
+# and the percentage of total dice rolls for each face
 
-# ToDo:
 # import random
 import random
 
-# set max and min values and intervals
+# variable declarations
 count = 0
 
 sum1 = 0
@@ -15,7 +16,7 @@ sum5 = 0
 sum6 = 0
 
 
-def getRandomNumber(num):
+def getRandomNumberSum(num):
     global sum1, sum2, sum3, sum4, sum5, sum6
     if num >= 0/6 and num < 1/6:
         sum1 += 1
@@ -34,7 +35,7 @@ def getRandomNumber(num):
 # while count < 1000 program runs
 while count < 1000:
     result = random.random()
-    getRandomNumber(result)
+    getRandomNumberSum(result)
     count += 1
 
 
